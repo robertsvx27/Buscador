@@ -143,3 +143,13 @@ video#vidFondo {
 .card-action{
   text-align: right;
 }
+
+div.lista .card:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+div.lista {
+  max-height: 100%;
+  overflow: scroll;
+}

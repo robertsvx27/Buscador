@@ -2,6 +2,7 @@ $(function (){
 
     var ciudades = $("#selectCiudad");
     var tipos = $("#selectTipo");
+    var resultado = $("#resultado");
     /*
   Creación de una función personalizada para jQuery que detecta cuando se detiene el scroll en la página
 */
@@ -85,7 +86,6 @@ $(function (){
                 tipos.append('<option value="" selected>Elige un tipo</option>');
                 $.each(data, function (id,value){
                     tipos.append('<option value="'+id+'">'+value+'</option>');
-
                 });
                 $('select').material_select();
             },
@@ -95,6 +95,37 @@ $(function (){
         });
     }
 
+
+    $("#mostrarTodos").click(function () {
+       resultado.find('div').remove();
+
+        $.ajax({
+            url: 'php/data.php',
+            type: 'GET',
+            data: 'tipo=todos',
+            success: function(data, textStatus, jqXHR) {
+                $.each(data, function (id,value){
+                   var insertar="<div class='card horizontal'>" +
+                       "<div class='card-image'><img src='img/home.jpg'/></div>" +
+                       "<div class='card-stacked'>" +
+                       "<div class='card-content'>" +
+                       "Direccion:"+ value['Direccion'] +"<br>" +
+                       "Ciudad:"+value['Ciudad']+"<br>" +
+                       "Telefono:"+value['Telefono']+"<br>" +
+                       "</div>" +
+                       "<div class='card-action right-align'>" +
+                       "<a href='#'>Ver mas</a> " +
+                       "</div>" +
+                       "</div>" +
+                       "</div>";
+                   resultado.append(insertar);
+                });
+            },
+            error: function(data, textStatus, errorThrown) {
+                console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+            }
+        });
+    });
 
     $(function () {
         $('select').material_select();

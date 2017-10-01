@@ -15,6 +15,10 @@ if( isset($_GET['tipo']) ) {
         case 'tipos':
             getTipos();
             break;
+        case 'todos':
+            header('Content-type: application/json; charset=utf-8');
+            echo json_encode( getData('../data-1.json'),JSON_FORCE_OBJECT);
+            break;
     }
 } else {
     die("Solicitud no válida.");
