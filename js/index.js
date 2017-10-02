@@ -105,15 +105,18 @@ $(function (){
             data: 'tipo=todos',
             success: function(data, textStatus, jqXHR) {
                 $.each(data, function (id,value){
-                   var insertar="<div class='card horizontal'>" +
-                       "<div class='card-image'><img src='img/home.jpg'/></div>" +
+                   var insertar="<div class='itemMostrado card'>" +
+                       "<img src='img/home.jpg'/>" +
                        "<div class='card-stacked'>" +
                        "<div class='card-content'>" +
-                       "Direccion:"+ value['Direccion'] +"<br>" +
-                       "Ciudad:"+value['Ciudad']+"<br>" +
-                       "Telefono:"+value['Telefono']+"<br>" +
+                       "<div><strong>Direccion: </strong>"+ value['Direccion'] +"</div>" +
+                       "<div><strong>Ciudad: </strong>"+value['Ciudad']+"</div>" +
+                       "<div><strong>Telefono: </strong>"+value['Telefono']+"</div>" +
+                       "<div><strong>Código postal: </strong>"+value['Codigo_Postal']+"</div>" +                       
+                       "<div><strong>Tipo: </strong>"+value['Tipo']+"</div>" +
+                       "<div class='precioTexto'><strong>Precio: </strong>"+value['Precio']+"</div>" +
                        "</div>" +
-                       "<div class='card-action right-align'>" +
+                       "<div class='card-action'>" +
                        "<a href='#'>Ver mas</a> " +
                        "</div>" +
                        "</div>" +
