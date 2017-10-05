@@ -107,7 +107,7 @@ $(function (){
                 $.each(data, function (id,value){
                    var insertar=
                    "<div class='card itemMostrado'>" +
-                   "<div class='card-image' style='width:25%;'><img src='img/home.jpg'/></div>" +
+                   "<div class='card-image'  style='width:50%;'><img src='img/home.jpg'/></div>" +
                        "<div class='card-stacked'>" +
                        "<div class='card-content'>" +
                        "<div><strong>Direccion: </strong>"+ value['Direccion'] +"</div>" +
@@ -137,20 +137,12 @@ $(function (){
     {
 
         event.preventDefault();
-
-            // Abort any pending request
         if (request) {
             request.abort();
         }
-        // setup some local variables
         var $form = $(this);
-
-        // Let's select and cache all the fields
         var $inputs = $form.find("input, select, button, textarea");
-    
-        // Serialize the data in the form
         var serializedData = $form.serialize();
-
         var postForm = { //Fetch form data
             'sCiudad' : $('select[name=ciudad]').val(), //Store name fields value
             'sTipo' : $('select[name=tipo]').val(),
@@ -158,15 +150,8 @@ $(function (){
             'sHasta': $('#rangoPrecio').data().to,
             'tipo'  : 'filtro'
         };
-    
-        // Let's disable the inputs for the duration of the Ajax request.
-        // Note: we disable elements AFTER the form data has been serialized.
-        // Disabled form elements will not be serialized.
         $inputs.prop("disabled", true);
-    
         resultado.find('div').remove();
-        // Fire off the request to /form.php
-
         $.ajax({
             url: 'buscador.php',
             type: 'POST',
@@ -175,7 +160,7 @@ $(function (){
                 $.each(data, function (id,value){
                    var insertar=
                     "<div class='card itemMostrado'>" +
-                       "<div class='card-image' style='width:25%;'><img src='img/home.jpg'/></div>" +
+                       "<div class='card-image'  style='width:50%;'><img src='img/home.jpg'/></div>" +
                        "<div class='card-stacked'>" +
                        "<div class='card-content'>" +
                        "<div><strong>Direccion: </strong>"+ value['Direccion'] +"</div>" +
@@ -205,10 +190,10 @@ $(function (){
     
     $(function () {
         $('select').material_select();
-        inicializarSlider();
-        playVideoOnScroll();
+        inicializarSlider();       
         cargarCiudades();
         cargarTipos();
+        //playVideoOnScroll();
     });
 });
 
