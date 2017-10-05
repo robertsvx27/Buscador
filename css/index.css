@@ -125,34 +125,13 @@ video#vidFondo {
   width: 100%;
 }
 .itemMostrado{
-  width: 100%;
+  width: 150%;
   margin-top: 0.4rem;
   display: flex;
   flex-flow: row wrap;
 }
-.itemMostrado img{
-  width: 35% !important;  
-  max-height: 60%;
-  display: block;
-  overflow: hidden;
-}
+
 .precioTexto{
   font-size: 1.3rem;
   color: #ffab40;
-}
-.card-stacked{
-  width: 65%;
-}
-.card-action{
-  text-align: right;
-}
-
-div.lista .card:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-div.lista {
-  max-height: 100%;
-  overflow: scroll;
 }

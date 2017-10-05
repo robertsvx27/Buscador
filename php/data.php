@@ -7,8 +7,8 @@
  * Time: 2:03
  */
 
-if( isset($_GET['tipo']) ) {
-    switch ($_GET['tipo']){
+if( isset($_POST['tipo']) ) {
+    switch ($_POST['tipo']){
         case 'ciudades':
             getCiudades();
             break;
