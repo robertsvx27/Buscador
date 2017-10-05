@@ -21,8 +21,8 @@ $cont =0;
 for($i = 0; $i < count($items); $i++){
     $item = $items[$i];
     $ci = $item['Ciudad'];
-    $ti = $item['Tipo'];
-    $precio = $item['Precio'];
+    $ti = $item['Tipo'];    
+    $precio = floatval(preg_replace('/[^\d\.]+/', '', $item['Precio']));
 
     if ($ciudad !=='' and $tipo !==''){
         if($ciudad===$ci and $tipo===$ti and $precio>= $desde and $precio<= $hasta){
@@ -78,5 +78,6 @@ for($i = 0; $i < count($items); $i++){
         }
     }
  }
+ header('Content-type: application/json; charset=utf-8');
  echo json_encode($filtro,JSON_FORCE_OBJECT);
 ?>

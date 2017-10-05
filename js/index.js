@@ -106,8 +106,8 @@ $(function (){
             success: function(data, textStatus, jqXHR) {
                 $.each(data, function (id,value){
                    var insertar=
-                    "<div class='itemMostrado card'>" +
-                       "<div class='card-image'><img src='img/home.jpg'/></div>" +
+                   "<div class='card itemMostrado'>" +
+                   "<div class='card-image' style='width:25%;'><img src='img/home.jpg'/></div>" +
                        "<div class='card-stacked'>" +
                        "<div class='card-content'>" +
                        "<div><strong>Direccion: </strong>"+ value['Direccion'] +"</div>" +
@@ -117,7 +117,7 @@ $(function (){
                        "<div><strong>Tipo: </strong>"+value['Tipo']+"</div>" +
                        "<div class='precioTexto'><strong>Precio: </strong>"+value['Precio']+"</div>" +
                        "</div>" +
-                       "<div class='card-action'>" +
+                       "<div class='card-action' >" +
                        "<a href='#'>Ver mas</a> " +
                        "</div>" +
                        "</div>" +                      
@@ -166,23 +166,16 @@ $(function (){
     
         resultado.find('div').remove();
         // Fire off the request to /form.php
-        request = $.ajax({
-            url: "buscador.php",
-            type: "post",
-            data: postForm
-        });
 
-
-         // Callback handler that will be called on success
-        request.done(function (data, textStatus, jqXHR){
-            // Log a message to the console
-           // console.log("Hooray, it worked!");
-           //alert(response);
-           $.each(data, function (id,value){
-                alert(value['Ciudad']);
+        $.ajax({
+            url: 'buscador.php',
+            type: 'POST',
+            data: postForm,
+            success: function(data, textStatus, jqXHR) {                
+                $.each(data, function (id,value){
                    var insertar=
-                    "<div class='itemMostrado card'>" +
-                       "<div class='card-image'><img src='img/home.jpg'/></div>" +
+                    "<div class='card itemMostrado'>" +
+                       "<div class='card-image' style='width:25%;'><img src='img/home.jpg'/></div>" +
                        "<div class='card-stacked'>" +
                        "<div class='card-content'>" +
                        "<div><strong>Direccion: </strong>"+ value['Direccion'] +"</div>" +
@@ -197,25 +190,16 @@ $(function (){
                        "</div>" +
                        "</div>" +                      
                     "</div>";
-                   resultado.append(insertar);
-            });
+                   resultado.append(insertar);                 
+                });
+                $inputs.prop("disabled", false);
+            },
+            error: function(data, textStatus, errorThrown) {
+                console.log('message=:' + data + ', text status=:' + textStatus + ', error thrown:=' + errorThrown);
+                $inputs.prop("disabled", false);
+            }
         });
-
-        // Callback handler that will be called on failure
-        request.fail(function (jqXHR, textStatus, errorThrown){
-            // Log the error to the console
-            console.error(
-                "The following error occurred: "+
-                textStatus, errorThrown
-            );
-        });
-
-        // Callback handler that will be called regardless
-        // if the request failed or succeeded
-        request.always(function () {
-            // Reenable the inputs
-            $inputs.prop("disabled", false);
-        });
+        $inputs.prop("disabled", false);
 
     });
     

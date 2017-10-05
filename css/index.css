@@ -125,12 +125,14 @@ video#vidFondo {
   width: 100%;
 }
 .itemMostrado{
-  width: 150%;
+  width: 50%;
   margin-top: 0.4rem;
   display: flex;
   flex-flow: row wrap;
 }
-
+.itemMostrado img{
+  width: 35% !important;
+}
 .precioTexto{
   font-size: 1.3rem;
   color: #ffab40;
